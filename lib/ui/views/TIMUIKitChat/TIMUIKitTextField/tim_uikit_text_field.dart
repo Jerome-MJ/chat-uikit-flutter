@@ -203,13 +203,17 @@ class _InputTextFieldState extends TIMUIKitState<TIMUIKitInputTextField> {
   onEmojiSubmitted() {
     lastText = "";
     final text = textEditingController.text.trim();
+    var newText = text;
+    if(IMGlobal.replaceWords != ""){
+      newText = text.replaceAll(RegExp(IMGlobal.replaceWords), "***");
+    }
     final convType = widget.conversationType;
     conversationModel.clearWebDraft(conversationID: widget.conversationID);
-    if (text.isNotEmpty && text != zeroWidthSpace) {
+    if (newText.isNotEmpty && newText != zeroWidthSpace) {
       if (widget.model.repliedMessage != null) {
         MessageUtils.handleMessageError(
             widget.model.sendReplyMessage(
-              text: text,
+              text: newText,
               convID: widget.conversationID,
               convType: convType,
               atUserIDList: getUserIdFromMemberInfoMap(),
@@ -218,7 +222,7 @@ class _InputTextFieldState extends TIMUIKitState<TIMUIKitInputTextField> {
       } else {
         MessageUtils.handleMessageError(
             widget.model.sendTextMessage(
-              text: text,
+              text: newText,
               convID: widget.conversationID,
               convType: convType,
             ),

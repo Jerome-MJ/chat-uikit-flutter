@@ -325,7 +325,13 @@ class _TIMUIKitHistoryMessageListState
 
     final theme = value.theme;
     if (widget.messageList.isEmpty) {
-      return Container();
+      return Container(
+        child: Stack(
+          children: [
+            if(widget.topWidget!=null)widget.topWidget!
+          ],
+        ),
+      );
     }
 
     final messageList = widget.messageList;

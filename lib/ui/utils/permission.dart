@@ -287,9 +287,9 @@ class Permissions {
     // 第一次直接走系统文案
     if (!await checkPermissionSetBefore(value)) {
       await setLocalPermission(value);
-      if (platformUtils.isAndroid && isShowPermissionPage) {
-        showPermissionRequestInfoDialog(context, value);
-      }
+      // if (platformUtils.isAndroid && isShowPermissionPage) {
+      //   showPermissionRequestInfoDialog(context, value);
+      // }
       return true;
     }
 

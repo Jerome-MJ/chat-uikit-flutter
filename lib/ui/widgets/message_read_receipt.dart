@@ -234,7 +234,7 @@ class _MessageReadReceiptState extends TIMUIKitState<MessageReadReceipt> {
                         width: 8,
                       ),
                       Text(
-                        TimeAgo().getTimeForMessage(
+                        TimeAgo().getTimeStringForChat(
                             widget.messageItem.timestamp ?? 0),
                         softWrap: true,
                         style:
